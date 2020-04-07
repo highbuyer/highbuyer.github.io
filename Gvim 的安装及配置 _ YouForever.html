@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)https://www.zhyong.cn/posts/876e/ -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://www.zhyong.cn/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://www.zhyong.cn/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://www.zhyong.cn/images/favicon-32x32-next.png">
+  <link rel="mask-icon" href="https://www.zhyong.cn/images/favicon-32x32-next.png" color="#222">
+  <link rel="manifest" href="https://www.zhyong.cn/images/favicon-32x32-next.png">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="./Gvim 的安装及配置 _ YouForever_files/main.css">
+
+<link rel="stylesheet" href="./Gvim 的安装及配置 _ YouForever_files/css">
+<link rel="stylesheet" href="./Gvim 的安装及配置 _ YouForever_files/font-awesome.min.css">
+  <link rel="stylesheet" href="./Gvim 的安装及配置 _ YouForever_files/jquery.fancybox.min.css">
+
+
+<script src="./Gvim 的安装及配置 _ YouForever_files/push.js.下载"></script><script src="./Gvim 的安装及配置 _ YouForever_files/hm.js.下载"></script><script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: true,
+    lazyload: true,
+    pangu: true,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Gvim是vim下的Windows版本，是一个GUI程序。Vim是从vi发展出来的一个文本编辑器，具有代码补完、编译及错误跳转等方便编程的功能，在程序员中被广泛使用。Vim的学习曲线陡峭，但是真正熟悉之后，会极大提高我们查看、编辑文本的效率。vim有丰富的插件，其自定义程度极高，可通过修改配置文件实现我们想要的功能。总之，熟悉vim后，会颠覆我们对传统文本编辑器的认知，你会一次一次地被折服。 本篇">
+<meta name="keywords" content="vim,vim插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gvim的安装及配置">
+<meta property="og:url" content="https://www.zhyong.cn/posts/876e/index.html">
+<meta property="og:site_name" content="YouForever">
+<meta property="og:description" content="Gvim是vim下的Windows版本，是一个GUI程序。Vim是从vi发展出来的一个文本编辑器，具有代码补完、编译及错误跳转等方便编程的功能，在程序员中被广泛使用。Vim的学习曲线陡峭，但是真正熟悉之后，会极大提高我们查看、编辑文本的效率。vim有丰富的插件，其自定义程度极高，可通过修改配置文件实现我们想要的功能。总之，熟悉vim后，会颠覆我们对传统文本编辑器的认知，你会一次一次地被折服。 本篇">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_11-57-54.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_13-36-12.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_13-49-45.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_14-51-04.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_16-06-37.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-22-50.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-34-43.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-43-47.png">
+<meta property="og:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_01-23-51.png">
+<meta property="og:updated_time" content="2019-05-24T16:43:17.517Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_11-57-54.png">
+
+<link rel="canonical" href="https://www.zhyong.cn/posts/876e/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Gvim 的安装及配置 | YouForever</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?85438a15feadad301faf98510f700de2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="https://www.zhyong.cn/atom.xml" title="YouForever" type="application/atom+xml">
+<style type="text/css">.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}</style><script src="./Gvim 的安装及配置 _ YouForever_files/Valine.min.js.下载"></script><style type="text/css">.v{font-size:16px;text-align:left}.v *{-webkit-box-sizing:border-box;box-sizing:border-box;line-height:2;color:#555;-webkit-transition:all .3s ease;transition:all .3s ease}.v hr{margin:.825em 0;border-color:#f6f6f6;border-style:dashed}.v.hide-avatar .vimg{display:none}.v a{position:relative;cursor:pointer;color:#1abc9c;display:inline-block}.v a:before{content:"";position:absolute;width:0;right:0;bottom:0;height:1px;background:#1abc9c;-webkit-transition:width .3s ease;transition:width .3s ease}.v a:hover{color:#d7191a}.v a:hover:before{width:100%;left:0;right:auto}.v code,.v pre{background-color:#f6f6f6;color:#555;padding:.2em .4em;border-radius:3px;font-size:85%;margin:0;font-family:Source Code Pro,courier new,Input Mono,PT Mono,SFMono-Regular,Consolas,Monaco,Menlo,PingFang SC,Liberation Mono,Microsoft YaHei,Courier，monospace}.v pre{padding:10px;overflow:auto;line-height:1.45}.v pre code{padding:0;background:transparent;white-space:pre-wrap;word-break:keep-all}.v blockquote{color:#666;margin:.5em 0;padding:0 0 0 1em;border-left:8px solid hsla(0,0%,93%,.5)}.v .vinput{border:none;resize:none;outline:none;padding:10px 5px;max-width:100%;font-size:.775em}.v input[type=checkbox],.v input[type=radio]{display:inline-block;vertical-align:middle;margin-top:-2px}.v .vwrap{border:1px solid #f0f0f0;border-radius:4px;margin-bottom:10px;overflow:hidden;position:relative;padding:10px}.v .vwrap input{background:transparent}.v .vwrap .vedit{position:relative;padding-top:10px}.v .vwrap .vedit .vctrl{text-align:right;font-size:12px}.v .vwrap .vedit .vctrl span{padding:10px;display:inline-block;vertical-align:middle;cursor:pointer}.v .vwrap .vedit .vemojis{display:none;font-size:18px;text-align:justify;max-height:145px;overflow:auto;margin-bottom:10px;-webkit-box-shadow:0 0 1px #f0f0f0;box-shadow:0 0 1px #f0f0f0}.v .vwrap .vedit .vemojis i{font-style:normal;padding:7px 0;width:38px;cursor:pointer;text-align:center;display:inline-block;vertical-align:middle}.v .vwrap .vedit .vpreview{padding:7px;-webkit-box-shadow:0 0 1px #f0f0f0;box-shadow:0 0 1px #f0f0f0}.v .vwrap .vedit .vpreview frame,.v .vwrap .vedit .vpreview iframe,.v .vwrap .vedit .vpreview img{max-width:100%;border:none}.v .vwrap .vheader .vinput{width:33.33%;border-bottom:1px dashed #dedede}.v .vwrap .vheader.item2 .vinput{width:50%}.v .vwrap .vheader.item1 .vinput{width:100%}.v .vwrap .vheader .vinput:focus{border-bottom-color:#eb5055}@media screen and (max-width:520px){.v .vwrap .vheader.item2 .vinput,.v .vwrap .vheader .vinput{width:100%}}.v .vwrap .vcontrol{font-size:0;padding-top:15px}.v .vwrap .vcontrol .col{display:inline-block;font-size:16px;vertical-align:middle;color:#ccc}.v .vwrap .vcontrol .col.text-right{text-align:right}.v .vwrap .vcontrol .col svg{margin-right:2px;overflow:hidden;fill:currentColor;vertical-align:middle}.v .vwrap .vcontrol .col.col-20{width:20%}.v .vwrap .vcontrol .col.col-40{width:40%}.v .vwrap .vcontrol .col.col-60{width:60%}.v .vwrap .vcontrol .col.col-80{width:80%}.v .vwrap .vcontrol .col.split{width:50%}.v .vwrap .vmark{position:absolute;background:rgba(0,0,0,.65);width:100%;height:100%;left:0;top:0}.v .vwrap .vmark .valert{padding-top:3em}.v .vwrap .vmark .valert .vtext{color:#fff;padding:1em 0}.v .vwrap .vmark .valert .vcode{width:4.6875em;border-radius:.3125em;padding:.5em;background:#dedede}.v .vwrap .vmark .valert .vcode:focus{border-color:#3090e4;background-color:#fff}@media screen and (max-width:720px){.v .vwrap .vmark .valert{padding-top:5.5em}.v .vwrap .vmark .valert .vtext{color:#fff;padding:1em 0}}.v .power{color:#999;padding:.5em 0}.v .power,.v .power a{font-size:.75em}.v .vinfo{font-size:0;padding:5px}.v .vinfo .col{font-size:16px;display:inline-block;width:50%;vertical-align:middle}.v .vinfo .vcount .vnum{font-weight:600;font-size:1.25em}.v a{text-decoration:none;color:#555}.v a:hover{color:#222}.v ol,.v ul{padding:0;margin-left:1.25em}.v .txt-center{text-align:center}.v .txt-right{text-align:right}.v .pd5{padding:5px}.v .pd10{padding:10px}.v .veditor{width:100%;min-height:8.75em;font-size:.875em;background:transparent;resize:vertical;-webkit-transition:all .25s ease;transition:all .25s ease}.v .vbtn{-webkit-transition-duration:.4s;transition-duration:.4s;text-align:center;color:#313131;border:1px solid #ededed;border-radius:.3em;display:inline-block;background:#ededed;margin-bottom:0;font-weight:400;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;white-space:nowrap;padding:.5em 1.25em;font-size:.875em;line-height:1.42857143;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;outline:none}.v .vbtn+.vbtn{margin-left:1.25em}.v .vbtn:active,.v .vbtn:hover{color:#3090e4;border-color:#3090e4;background-color:#fff}.v .vempty{padding:1.25em;text-align:center;color:#999}.v .vlist{width:100%}.v .vlist .vcard{padding-top:1.5em;position:relative;display:block}.v .vlist .vcard:after{content:"";clear:both;display:block}.v .vlist .vcard .vimg{width:3.125em;height:3.125em;float:left;border-radius:50%;margin-right:.7525em;border:1px solid #f5f5f5;padding:.125em}@media screen and (max-width:720px){.v .vlist .vcard .vimg{width:2.5em;height:2.5em}}.v .vlist .vcard .vhead{line-height:1.5;margin-top:0}.v .vlist .vcard .vhead .vnick{position:relative;font-size:.875em;font-weight:500;margin-right:.875em;cursor:pointer;color:#1abc9c;text-decoration:none;display:inline-block}.v .vlist .vcard .vhead .vnick:before{content:"";position:absolute;width:0;right:0;bottom:0;height:1px;background:#1abc9c;-webkit-transition:width .3s ease;transition:width .3s ease}.v .vlist .vcard .vhead .vnick:hover{color:#d7191a}.v .vlist .vcard .vhead .vnick:hover:before{width:100%;left:0;right:auto}.v .vlist .vcard .vhead .vsys{display:inline-block;padding:.2em .5em;background:#ededed;color:#b3b1b1;font-size:.75em;border-radius:.2em;margin-right:.3em}@media screen and (max-width:520px){.v .vlist .vcard .vhead .vsys{display:none}}.v .vlist .vcard .vh{overflow:hidden;padding-bottom:.5em;border-bottom:1px dashed #f5f5f5}.v .vlist .vcard .vh .vtime{color:#b3b3b3;font-size:.75em;margin-right:.875em}.v .vlist .vcard .vh .vmeta{line-height:1;position:relative}.v .vlist .vcard .vh .vmeta .vat{font-size:.8125em;color:#ef2f11;cursor:pointer;float:right}.v .vlist .vcard:last-child .vh{border-bottom:none}.v .vlist .vcard .vcontent{word-wrap:break-word;word-break:break-all;text-align:justify;color:#4a4a4a;font-size:.875em;line-height:2;position:relative;margin-bottom:.75em;padding-top:.625em}.v .vlist .vcard .vcontent frame,.v .vlist .vcard .vcontent iframe,.v .vlist .vcard .vcontent img{max-width:100%;border:none}.v .vlist .vcard .vcontent.expand{cursor:pointer;max-height:11.25em;overflow:hidden}.v .vlist .vcard .vcontent.expand:before{display:block;content:"";position:absolute;width:100%;left:0;top:0;bottom:3.15em;pointer-events:none;background:-webkit-gradient(linear,left top,left bottom,from(hsla(0,0%,100%,0)),to(hsla(0,0%,100%,.9)));background:linear-gradient(180deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.9))}.v .vlist .vcard .vcontent.expand:after{display:block;content:"Click on expand";text-align:center;color:#828586;position:absolute;width:100%;height:3.15em;line-height:3.15em;left:0;bottom:0;pointer-events:none;background:hsla(0,0%,100%,.9)}.v .vlist .vcard .vquote{color:#666;margin-top:1em;padding-left:1em;border-left:1px dashed hsla(0,0%,93%,.5)}.v .vlist .vcard .vquote .vimg{width:2.225em;height:2.225em}.v .vpage .vmore{margin:1em 0}.v .clear{content:"";display:block;clear:both}@-webkit-keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@keyframes spin{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{-webkit-transform:rotate(1turn);transform:rotate(1turn)}}@-webkit-keyframes pulse{50%{background:#dcdcdc}}@keyframes pulse{50%{background:#dcdcdc}}.v .vloading{position:relative;padding:20px;display:block;height:80px}.v .vloading:before{-webkit-box-sizing:border-box;box-sizing:border-box;content:"";position:absolute;display:inline-block;top:20px;left:50%;margin-left:-20px;width:40px;height:40px;border:6px double #a0a0a0;border-top-color:transparent;border-bottom-color:transparent;border-radius:50%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}</style><script src="./Gvim 的安装及配置 _ YouForever_files/av-min.js.下载"></script><script src="./Gvim 的安装及配置 _ YouForever_files/fundebug.1.9.0.min.js.下载" apikey="2c7e5b30c7cf402cb7fb35d14b62e7f778babbb70d054160af750065a180fdcd" async="true"></script></head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="https://www.zhyong.cn/" class="brand" rel="start" style="opacity: 1;">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title" style="opacity: 1; top: 0px;">YouForever</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description" style="opacity: 1; top: 0px;">专注于互联网分享</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-categories" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-tags" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/guestbook" rel="section"><i class="fa fa-fw fa-newspaper-o"></i>留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-about" style="opacity: 1; transform: translateY(0px);">
+
+    <a href="https://www.zhyong.cn/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search" style="opacity: 1; transform: translateY(0px);">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar" style="width: 0%;"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope="" itemtype="http://schema.org/Article" class="post-block" lang="zh-CN" style="opacity: 1; display: block;">
+    <link itemprop="mainEntityOfPage" href="https://www.zhyong.cn/posts/876e/">
+
+    <span hidden="" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pic.zhyong.cn/images/2019/08/10/2018-04-27_1743.jpg">
+      <meta itemprop="name" content="ZhangYong">
+      <meta itemprop="description" content="记录，点滴">
+    </span>
+
+    <span hidden="" itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YouForever">
+    </span>
+      <header class="post-header" style="opacity: 1; display: block; transform: translateY(0px);">
+        <h2 class="post-title" itemprop="name headline">
+          Gvim 的安装及配置
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-04-11 19:53:47" itemprop="dateCreated datePublished" datetime="2019-04-11T19:53:47+08:00"> 2019-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text"> 更新于</span>
+                <time title="修改时间：2019-05-25 00:43:17" itemprop="dateModified" datetime="2019-05-25T00:43:17+08:00"> 2019-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text"> 分类于</span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="https://www.zhyong.cn/categories/vim/" itemprop="url" rel="index">
+                    <span itemprop="name"> vim</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: inline;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text"> 阅读次数：</span>
+              <span id="busuanzi_value_page_pv">401</span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="https://www.zhyong.cn/posts/876e/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/posts/876e/" itemprop="commentCount">1</span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody" style="opacity: 1; display: block; transform: translateY(0px);">
+
+      
+        <p>Gvim 是 vim 下的 <code>Windows</code> 版本，是一个 GUI 程序。Vim 是从 vi 发展出来的一个文本编辑器，具有代码补完、编译及错误跳转等方便编程的功能，在程序员中被广泛使用。Vim 的学习曲线陡峭，但是真正熟悉之后，会极大提高我们查看、编辑文本的效率。vim 有丰富的插件，其自定义程度极高，可通过修改配置文件实现我们想要的功能。总之，熟悉 vim 后，会颠覆我们对传统文本编辑器的认知，你会一次一次地被折服。</p>
+<p>本篇文章是根据个人学习、使用 Vim 的经验及个人习惯所写的 Gvim 配置。适合有一定 vim 使用经验的人，如果你对 vim 一无所知，推荐从无配置的 vim 开始学习，使用 vim 自带的<code>:vimtutor</code> 开始（可惜 Gvim 没有）。但有一个 vim 插件 <a href="https://github.com/yianwillis/vimcdoc" target="_blank" rel="noopener">yianwillis/vimcdoc: Vim 中文文档计划</a>可帮助我们解决这个问题。本篇文章会介绍安装这款插件，<font color="red">因此如果你是新手，可以一步步进行配置完成，然后点击<code>:help</code> 开始学习 vim。</font></p>
+<a id="more"></a>
+
+<h2 id="Gvim的下载、安装"><a href="https://www.zhyong.cn/posts/876e/#Gvim%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85" class="headerlink" title="Gvim的下载、安装"></a>Gvim 的下载、安装</h2><p><i class="fa fa-download"></i> 下载地址：<a href="https://github.com/vim/vim-win32-installer/releases" target="_blank" rel="noopener">Releases · vim/vim-win32-installer</a></p>
+<p>我下载的版本是 <code>v8.1.1343</code>，vim 开发非常活跃，一般几天就会有一个版本出来，下载最新即可，这里附一下我的版本。<i class="fa fa-download"></i> <a href="https://www.lanzous.com/i47dnli" target="_blank" rel="noopener">高速下载</a></p>
+<p>下载后点击一步步默认安装即可，安装类型可选择<code>完全安装</code>。</p>
+<p><a class="fancybox fancybox.image" href="./Gvim 的安装及配置 _ YouForever_files/2019-05-18_11-57-54.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default" title="选择完全安装" data-caption="选择完全安装"><img alt="选择完全安装" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_11-57-54.png" src="./Gvim 的安装及配置 _ YouForever_files/2019-05-18_11-57-54.png" data-loaded="true"><p class="image-caption">选择完全安装</p></a></p>
+<p>完成后点击桌面的 <code>gVim 8.1</code>，打开后界面如下：</p>
+<p><a class="fancybox fancybox.image" href="./Gvim 的安装及配置 _ YouForever_files/2019-05-18_13-36-12.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_13-36-12.png" src="./Gvim 的安装及配置 _ YouForever_files/2019-05-18_13-36-12.png" data-loaded="true"></a></p>
+<p>进行下一步之前，了解一下 vim 配置文件的位置：位于家目录下的<code>.vimrc</code>(Linux、Mac) 和<code>_vimrc</code>(Windows)，因此配置我们会在家目录下的<code>_vimrc</code> 下操作 (若没有则手动创建，无后缀名)，最终配置文件是：<code>C:\Users\youname\_vimrc</code>，配置文件的注释为英文的双引号：<code>"</code>。</p>
+<h2 id="基础配置"><a href="https://www.zhyong.cn/posts/876e/#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="隐藏gvim菜单"><a href="https://www.zhyong.cn/posts/876e/#%E9%9A%90%E8%97%8Fgvim%E8%8F%9C%E5%8D%95" class="headerlink" title="隐藏gvim菜单"></a>隐藏 gvim 菜单</h3><p>由于习惯了 Linux 下的 vim 窗口，因此我们对 gvim 菜单等进行隐藏</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 隐藏GVIM菜单及设置</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">source $VIMRUNTIME/delmenu.vim</span><br><span class="line">source $VIMRUNTIME/menu.vim</span><br><span class="line">" 窗口大小</span><br><span class="line">set lines=35 columns=140</span><br><span class="line">" 分割出来的窗口位于当前窗口下边/右边</span><br><span class="line">set splitbelow</span><br><span class="line">set splitright</span><br><span class="line">"不显示工具/菜单栏</span><br><span class="line">set guioptions-=T</span><br><span class="line">set guioptions-=m</span><br><span class="line">set guioptions-=L</span><br><span class="line">set guioptions-=r</span><br><span class="line">set guioptions-=b</span><br><span class="line">" 使用内置 tab 样式而不是 gui</span><br><span class="line">set guioptions-=e</span><br><span class="line">set nolist</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<p>重新打开 <code>gVim 8.1</code>:</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_13-49-45.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_13-49-45.png"></a></p>
+<h3 id="通用设置"><a href="https://www.zhyong.cn/posts/876e/#%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE" class="headerlink" title="通用设置"></a>通用设置</h3><p>定义 <code>leader</code> 键（非常重要）、显示状态栏、显示行号等实用功能。</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 通用设置</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">let mapleader = "," "定义<span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>键</span><br><span class="line">set nocompatible    "设置不兼容原始vi模式</span><br><span class="line">filetype on     "设置开启文件类型侦测</span><br><span class="line">filetype plugin on  "加载对应文件类型插件</span><br><span class="line">set noeb        "关闭错误提示</span><br><span class="line">syntax enable       "开启语法高亮功能</span><br><span class="line">syntax on       "自动语法高亮</span><br><span class="line">set t_Co=256        "开启256色支持</span><br><span class="line">set cmdheight=2     "设置命令行高度</span><br><span class="line">set showcmd     "select模式下显示选中的行数</span><br><span class="line">set ruler       "总是显示光标的位置</span><br><span class="line">set laststatus=2    "总是显示状态栏</span><br><span class="line">set number      "开启行号显示</span><br><span class="line">set cursorline      "高亮显示当前行</span><br><span class="line">set whichwrap+=<span class="xml"><span class="tag">&lt;<span class="name">,</span>&gt;</span></span>,h,l  "设置光标键跨行</span><br><span class="line">set virtualedit=block,onemore   "允许光标出现在最后一个字符的后面</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<h3 id="代码缩进与排版"><a href="https://www.zhyong.cn/posts/876e/#%E4%BB%A3%E7%A0%81%E7%BC%A9%E8%BF%9B%E4%B8%8E%E6%8E%92%E7%89%88" class="headerlink" title="代码缩进与排版"></a>代码缩进与排版</h3><p>默认制表符为 8 个空格，通过配置改为 4 个，设置智能缩进等</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 代码缩进与排版</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">set autoindent      "设置自动缩进</span><br><span class="line">set cindent     "设置使用C/C++语言的自动缩进方式</span><br><span class="line">set cinoptions=g0,:0,N-s,(0 "设置使用C/C++语言的具体缩进方式</span><br><span class="line">set smartindent     "智能选择对齐方式</span><br><span class="line">filetype indent on  "自适应不同语言的智能缩进</span><br><span class="line">set expandtab       "将制表符扩展为空格</span><br><span class="line">set tabstop=4       "设置编辑时制表符所占的空格数</span><br><span class="line">set shiftwidth=4    "设置格式化时制表符占用的空格数</span><br><span class="line">set softtabstop=4       "设置4个空格为制表符</span><br><span class="line">set smarttab        "在行和段开始处使用制表符</span><br><span class="line">"set nowrap     "禁止折行</span><br><span class="line">set backspace=2     "使用回车键正常处理indent.eol,start等</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<h3 id="代码相关"><a href="https://www.zhyong.cn/posts/876e/#%E4%BB%A3%E7%A0%81%E7%9B%B8%E5%85%B3" class="headerlink" title="代码相关"></a>代码相关</h3><p>设置代码补全、代码折叠</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 代码补全</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">set wildmenu        "vim自身命令行模式智能补全</span><br><span class="line">set completeopt-=preview    "补全时不显示窗口，只显示补全列表</span><br><span class="line"></span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">"代码折叠</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">set foldmethod=syntax       "设置基于语法进行代码折叠</span><br><span class="line">set nofoldenable            "关闭代码折叠</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<h3 id="缓存及编码"><a href="https://www.zhyong.cn/posts/876e/#%E7%BC%93%E5%AD%98%E5%8F%8A%E7%BC%96%E7%A0%81" class="headerlink" title="缓存及编码"></a>缓存及编码</h3><p>设置不自动备份，默认设置为 UTF8 编码等</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 缓存设置</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">set nobackup        "设置不备份</span><br><span class="line">set noswapfile      "禁止生成临时文件</span><br><span class="line">set autoread        "文件在vim之外修改过，自动重新载入</span><br><span class="line">set autowrite       "设置自动保存</span><br><span class="line">set confirm         "在处理未保存或只读文件时，弹出确认</span><br><span class="line"></span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 编码设置</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">set langmenu=zh_CN.UTF-8</span><br><span class="line">set helplang=cn</span><br><span class="line">set termencoding=utf-8</span><br><span class="line">set encoding=utf8</span><br><span class="line">set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<h3 id="根据个人习惯设置"><a href="https://www.zhyong.cn/posts/876e/#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BA%BA%E4%B9%A0%E6%83%AF%E8%AE%BE%E7%BD%AE" class="headerlink" title="根据个人习惯设置"></a>根据个人习惯设置</h3><div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">" 优化设置</span><br><span class="line">"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""</span><br><span class="line">"映射 esc 键为 jj</span><br><span class="line">inoremap jj <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span></span><br><span class="line">"快速打开vim配置文件：_vimrc</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>e :e ~/_vimrc<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">"刷新配置</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>r :source $MYVIMRC<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">" 插入模式、正常模式按 Ctrl+u 快速转换为大写</span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">c-u</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span>viwUea</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">c-u</span>&gt;</span></span> viwUe</span><br><span class="line">"Ctrl+d 复制本行并粘贴到一下行</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">c-d</span>&gt;</span></span> yyp</span><br><span class="line"></span><br><span class="line">" <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>+q 快速退出vim</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>q :q<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>q <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>:q<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">"插入模式快速到另一个字符右边，对于配对的符号（如括号）很有用</span><br><span class="line">imap <span class="xml"><span class="tag">&lt;<span class="name">c-a</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>la</span><br><span class="line">"插入模式移动到下一行</span><br><span class="line">imap <span class="xml"><span class="tag">&lt;<span class="name">c-d</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>o</span><br><span class="line">"移动到末尾</span><br><span class="line">imap <span class="xml"><span class="tag">&lt;<span class="name">c-e</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>A</span><br><span class="line"></span><br><span class="line">" 添加“空格键”为代码折叠</span><br><span class="line">set foldmethod=indent</span><br><span class="line">set foldlevel=99</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">space</span>&gt;</span></span> za</span><br><span class="line"></span><br><span class="line">"若打开分割窗口，可快速切换窗口</span><br><span class="line">"快捷键提示：Ctrl+w w 切换窗口; Ctrl+w s 水平分割; Ctrl+w v 竖直分割</span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">C-h</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">C-w</span>&gt;</span></span>h</span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">C-j</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">C-w</span>&gt;</span></span>j</span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">C-k</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">C-w</span>&gt;</span></span>k</span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">C-l</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">C-w</span>&gt;</span></span>l</span><br><span class="line"></span><br><span class="line">"buffer change</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">c-n</span>&gt;</span></span> :bn<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">c-p</span>&gt;</span></span> :bp<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>d :bd<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<h3 id="最终效果"><a href="https://www.zhyong.cn/posts/876e/#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C" class="headerlink" title="最终效果"></a>最终效果</h3><p>打开 gvim，按下 <code>,e</code> 打开 gvim 配置文件，界面如下，其余快捷键可自行实践。</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_14-51-04.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default" title="自动高亮显示" data-caption="自动高亮显示"><img alt="自动高亮显示" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_14-51-04.png"><p class="image-caption">自动高亮显示</p></a></p>
+<h2 id="插件安装及配置"><a href="https://www.zhyong.cn/posts/876e/#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE" class="headerlink" title="插件安装及配置"></a>插件安装及配置</h2><p>由于安装插件需要一些工具如 <code>rg</code>、<code>fzf</code> 等，我们提前在 d 盘根目录下新建 <code>bin</code> 文件夹，并将 <code>D:\bin</code> 文件夹添加到系统环境变量中（自行百度）。</p>
+<h3 id="安装-vimplug-插件管理器"><a href="https://www.zhyong.cn/posts/876e/#%E5%AE%89%E8%A3%85-vimplug-%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8" class="headerlink" title="安装 vimplug 插件管理器"></a>安装 <code>vimplug</code> 插件管理器</h3><p>Github 地址：<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">junegunn/vim-plug: Minimalist Vim Plugin Manager</a></p>
+<p><a href="https://zhyong-cn-soft.oss-cn-shanghai.aliyuncs.com/plug.vim" target="_blank" rel="noopener">下载 plug.vim</a> 到 gvim 安装目录：<code>C:\Program Files\Vim\vim81\autoload</code> 即可。</p>
+<p>这样 vimplug 插件管理器就安装成功了！</p>
+<h3 id="插件配置文件"><a href="https://www.zhyong.cn/posts/876e/#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" class="headerlink" title="插件配置文件"></a>插件配置文件</h3><p>插件的作用都已经添加注释，自行查看即可。</p>
+<p>在<code>_vimrc</code> 文件最后添加：</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">" vim-plug</span><br><span class="line">" <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>BEGIN<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span></span><br><span class="line">call plug#begin('~/.vim/plugged')</span><br><span class="line">"中文vim入门，不需要可注释掉</span><br><span class="line">Plug 'yianwillis/vimcdoc'</span><br><span class="line">"vim-colorschemes</span><br><span class="line">Plug 'flazz/vim-colorschemes'</span><br><span class="line">"change scheme</span><br><span class="line">Plug 'chxuan/change-colorscheme'</span><br><span class="line"></span><br><span class="line">"incsearch</span><br><span class="line">Plug 'haya14busa/incsearch.vim'</span><br><span class="line">"强化f/t</span><br><span class="line">Plug 'rhysd/clever-f.vim'</span><br><span class="line"></span><br><span class="line">"vim-airline</span><br><span class="line">Plug 'vim-airline/vim-airline'</span><br><span class="line">"vim-airline themes</span><br><span class="line">Plug 'vim-airline/vim-airline-themes'</span><br><span class="line"></span><br><span class="line">" nerdtree</span><br><span class="line">Plug 'scrooloose/nerdtree',{'on':'NERDTreeToggle'}</span><br><span class="line">"nerdtree-git-plugin</span><br><span class="line">Plug 'Xuyuanp/nerdtree-git-plugin'</span><br><span class="line"></span><br><span class="line">"vim-easymotion</span><br><span class="line">Plug 'easymotion/vim-easymotion'</span><br><span class="line"></span><br><span class="line">"vim auto pair</span><br><span class="line">Plug 'jiangmiao/auto-pairs'</span><br><span class="line"></span><br><span class="line">"vim-smooth_scroll</span><br><span class="line">Plug 'terryma/vim-smooth-scroll'</span><br><span class="line"></span><br><span class="line">"vim-surround</span><br><span class="line">Plug 'tpope/vim-surround'</span><br><span class="line"></span><br><span class="line">"vim-commentary</span><br><span class="line">Plug 'tpope/vim-commentary'</span><br><span class="line"></span><br><span class="line">" multiple-cursors</span><br><span class="line">Plug 'terryma/vim-multiple-cursors'</span><br><span class="line"></span><br><span class="line">"vim expand region</span><br><span class="line">Plug 'terryma/vim-expand-region'</span><br><span class="line"></span><br><span class="line">"tarbar</span><br><span class="line">Plug 'majutsushi/tagbar'</span><br><span class="line"></span><br><span class="line">"vim-endwise</span><br><span class="line">Plug 'tpope/vim-endwise'</span><br><span class="line"></span><br><span class="line">"vim start page</span><br><span class="line">Plug 'mhinz/vim-startify'</span><br><span class="line"></span><br><span class="line">"fzf</span><br><span class="line">Plug 'junegunn/fzf', { 'dir': '~/.fzf'}</span><br><span class="line"></span><br><span class="line">"根据缩进折叠代码</span><br><span class="line">Plug 'tmhedberg/SimpylFold'</span><br><span class="line"></span><br><span class="line">"文本搜索rg</span><br><span class="line">Plug 'mileszs/ack.vim'</span><br><span class="line"></span><br><span class="line">"彩虹括号增强</span><br><span class="line">Plug 'luochen1990/rainbow'</span><br><span class="line"></span><br><span class="line">"对齐插件</span><br><span class="line">Plug 'godlygeek/tabular'</span><br><span class="line"></span><br><span class="line">"语法检查</span><br><span class="line">Plug 'vim-syntastic/syntastic'</span><br><span class="line"></span><br><span class="line">"复制增强</span><br><span class="line">Plug 'machakann/vim-highlightedyank'</span><br><span class="line"></span><br><span class="line">"快速打开大文件</span><br><span class="line">Plug 'vim-scripts/LargeFile'</span><br><span class="line">call plug#end()</span><br><span class="line">" <span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>END<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span></span><br><span class="line"></span><br><span class="line">" VimPlug快捷键：安装、更新、删除插件</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>i :PlugInstall<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>u :PlugUpdate<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>c :PlugClean<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<p>重新打开 gvim，按下 <code>&lt;leader&gt; &lt;leader&gt; i</code> 即可安装插件 (<code>&lt;leader&gt;</code> 即逗号键)：</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_16-06-37.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default" title="安装插件过程" data-caption="安装插件过程"><img alt="安装插件过程" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-18_16-06-37.png"><p class="image-caption">安装插件过程</p></a></p>
+<p>添加插件配置，在<code>_vimrc</code> 后添加即可。</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br></pre></td><td class="code"><pre><span class="line">"vim-colorschemes</span><br><span class="line">"默认主题</span><br><span class="line">colorscheme 3dglasses</span><br><span class="line"></span><br><span class="line">"change-colorscheme</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F9</span>&gt;</span></span> :PreviousColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F9</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span> :PreviousColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F10</span>&gt;</span></span> :NextColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F10</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span> :NextColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F11</span>&gt;</span></span> :RandomColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F11</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span> :RandomColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F12</span>&gt;</span></span> :ShowColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">F12</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span> :ShowColorScheme<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">"incsearch.vim</span><br><span class="line">map /  <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-forward)</span><br><span class="line">map ?  <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-backward)</span><br><span class="line">map g/ <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-stay)</span><br><span class="line">let g:incsearch#auto_nohlsearch = 1</span><br><span class="line">map n  <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-nohl-n)</span><br><span class="line">map N  <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-nohl-N)</span><br><span class="line">map <span class="emphasis">*  &lt;Plug&gt;(incsearch-nohl-*</span>)</span><br><span class="line">map #  <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-nohl-#)</span><br><span class="line">map g<span class="emphasis">* &lt;Plug&gt;(incsearch-nohl-g*</span>)</span><br><span class="line">map g# <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(incsearch-nohl-g#)</span><br><span class="line">"使用<span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>暂时关闭高亮功能</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span><span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span> :<span class="xml"><span class="tag">&lt;<span class="name">C-u</span>&gt;</span></span>nohlsearch<span class="xml"><span class="tag">&lt;<span class="name">CR</span>&gt;</span></span></span><br><span class="line">"使用Ctrl+k统计匹配个数</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">C-c</span>&gt;</span></span> :%s///gn<span class="xml"><span class="tag">&lt;<span class="name">CR</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">"f/t增强</span><br><span class="line">let g:clever<span class="emphasis">_f_</span>ignore_case=1</span><br><span class="line">let g:clever<span class="emphasis">_f_</span>smart_case=1</span><br><span class="line">map ; <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(clever-f-repeat-forward)</span><br><span class="line">map ' <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(clever-f-repeat-back)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">"vim-airline</span><br><span class="line">let g:airline_theme="onedark"</span><br><span class="line">let g:airline<span class="emphasis">_powerline_</span>fonts = 1</span><br><span class="line">let g:airline#extensions#tabline#enabled = 1</span><br><span class="line">" let g:airline#extensions#tabline#left_sep = ' '   </span><br><span class="line">" let g:airline#extensions#tabline#left<span class="emphasis">_alt_</span>sep = '|' "tabline中未激活buffer两端的分隔字符      </span><br><span class="line">if !exists('g:airline_symbols')</span><br><span class="line"><span class="code">    let g:airline_symbols = {}</span></span><br><span class="line">endif</span><br><span class="line">let g:airline<span class="emphasis">_left_</span>sep = ''</span><br><span class="line">let g:airline<span class="emphasis">_left_</span>alt_sep = ''</span><br><span class="line">let g:airline<span class="emphasis">_right_</span>sep = ''</span><br><span class="line">let g:airline<span class="emphasis">_right_</span>alt_sep = ''</span><br><span class="line">let g:airline_symbols.linenr = '¶'</span><br><span class="line">let g:airline_symbols.whitespace = 'Ξ'</span><br><span class="line">let g:airline_symbols.branch = '⎇'</span><br><span class="line">let g:airline<span class="emphasis">_section_</span>b='%{strftime("%c")}'   "使用时显示当前时间</span><br><span class="line">" let g:airline<span class="emphasis">_section_</span>y='BN:%{bufnr("%")}'  "右下角显示bffer序号</span><br><span class="line"></span><br><span class="line">"nerdtree</span><br><span class="line">"close vim if only nerdtree</span><br><span class="line">autocmd bufenter * if (winnr("$") == 1 &amp;&amp; exists("b:NERDTree") &amp;&amp; b:NERDTree.isTabTree()) | q | endif</span><br><span class="line">"open nerdtree automatically when vim starts with a dictory</span><br><span class="line">autocmd StdinReadPre * let s:std_in=1</span><br><span class="line">autocmd VimEnter * if argc() == 1 &amp;&amp; isdirectory(argv()[0]) &amp;&amp; !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif</span><br><span class="line">"快捷键</span><br><span class="line">map <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>n :NERDTreeToggle<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">let g:NERDTreeDirArrowExpandable = '▸'</span><br><span class="line">let g:NERDTreeDirArrowCollapsible = '▾'</span><br><span class="line"></span><br><span class="line">"nerdtree-git-plugin</span><br><span class="line">let g:NERDTreeIndicatorMapCustom = {</span><br><span class="line"><span class="code">            \ "Modified"  : "✹",</span></span><br><span class="line"><span class="code">            \ "Staged"    : "✚",</span></span><br><span class="line"><span class="code">            \ "Untracked" : "✭",</span></span><br><span class="line"><span class="code">            \ "Renamed"   : "➜",</span></span><br><span class="line"><span class="code">            \ "Unmerged"  : "═",</span></span><br><span class="line"><span class="code">            \ "Deleted"   : "✖",</span></span><br><span class="line"><span class="code">            \ "Dirty"     : "✗",</span></span><br><span class="line"><span class="code">            \ "Clean"     : "✔︎",</span></span><br><span class="line"><span class="code">            \ 'Ignored'   : '☒',</span></span><br><span class="line"><span class="code">            \ "Unknown"   : "?"</span></span><br><span class="line"><span class="code">            \ }</span></span><br><span class="line"></span><br><span class="line">"vim-easymotion</span><br><span class="line">let g:EasyMotion_smartcase=1</span><br><span class="line">map <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>w <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-bd-w)</span><br><span class="line">nmap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>w <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-overwin-w)</span><br><span class="line">map <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>f <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-bd-f)</span><br><span class="line">nmap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>f <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-overwin-f)</span><br><span class="line">nmap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>s <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-overwin-f2)</span><br><span class="line">" Move to line</span><br><span class="line">map <span class="xml"><span class="tag">&lt;<span class="name">Leader</span>&gt;</span></span>j <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-bd-jk)</span><br><span class="line">nmap <span class="xml"><span class="tag">&lt;<span class="name">Leader</span>&gt;</span></span>j <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(easymotion-overwin-line)</span><br><span class="line"></span><br><span class="line">" vim-smooth-scroll</span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">c-b</span>&gt;</span></span> :call smooth_scroll#up(&amp;scroll*2, 0, 4)<span class="xml"><span class="tag">&lt;<span class="name">CR</span>&gt;</span></span></span><br><span class="line">noremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">c-f</span>&gt;</span></span> :call smooth_scroll#down(&amp;scroll*2, 0, 4)<span class="xml"><span class="tag">&lt;<span class="name">CR</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">" Multip Cursor</span><br><span class="line">" Default key mapping</span><br><span class="line">let g:multi<span class="emphasis">_cursor_</span>use<span class="emphasis">_default_</span>mapping=0</span><br><span class="line">let g:multi<span class="emphasis">_cursor_</span>next_key='<span class="xml"><span class="tag">&lt;<span class="name">C-y</span>&gt;</span></span>'</span><br><span class="line">let g:multi<span class="emphasis">_cursor_</span>prev_key='<span class="xml"><span class="tag">&lt;<span class="name">C-p</span>&gt;</span></span>'</span><br><span class="line">let g:multi<span class="emphasis">_cursor_</span>skip_key='<span class="xml"><span class="tag">&lt;<span class="name">C-x</span>&gt;</span></span>'</span><br><span class="line">let g:multi<span class="emphasis">_cursor_</span>quit_key='<span class="xml"><span class="tag">&lt;<span class="name">Esc</span>&gt;</span></span>'</span><br><span class="line"></span><br><span class="line">"expand region expand</span><br><span class="line">map K <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(expand<span class="emphasis">_region_</span>expand)</span><br><span class="line">map J <span class="xml"><span class="tag">&lt;<span class="name">Plug</span>&gt;</span></span>(expand<span class="emphasis">_region_</span>shrink)</span><br><span class="line">let g:expand<span class="emphasis">_region_</span>text_objects = {</span><br><span class="line"><span class="code">            \ 'iw'  :0,</span></span><br><span class="line"><span class="code">            \ 'iW'  :0,</span></span><br><span class="line"><span class="code">            \ 'i"'  :0,</span></span><br><span class="line"><span class="code">            \ 'i''' :0,</span></span><br><span class="line"><span class="code">            \ 'i]'  :1,</span></span><br><span class="line"><span class="code">            \ 'ib'  :1,</span></span><br><span class="line"><span class="code">            \ 'iB'  :1,</span></span><br><span class="line"><span class="code">            \ 'il'  :0,</span></span><br><span class="line"><span class="code">            \ 'ip'  :1,</span></span><br><span class="line"><span class="code">            \ 'ie'  :0,</span></span><br><span class="line"><span class="code">            \ }"</span></span><br><span class="line"></span><br><span class="line">"tarbar</span><br><span class="line">let g:tagbar<span class="emphasis">_ctags_</span>bin = 'ctags'</span><br><span class="line">let g:tagbar_width = 30</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>t :TagbarToggle<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">inoremap <span class="xml"><span class="tag">&lt;<span class="name">silent</span>&gt;</span></span> <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>t <span class="xml"><span class="tag">&lt;<span class="name">esc</span>&gt;</span></span> :TagbarToggle<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">"fzf settings</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">Tab</span>&gt;</span></span> :FZF <span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">function! s:build<span class="emphasis">_quickfix_</span>list(lines)</span><br><span class="line"><span class="code">    call setqflist(map(copy(a:lines), '{ "filename": v:val  }'))</span></span><br><span class="line"><span class="code">    copen</span></span><br><span class="line"><span class="code">    cc</span></span><br><span class="line">endfunction</span><br><span class="line">let g:fzf_action = {</span><br><span class="line"><span class="code">            \ 'ctrl-q': function('s:build_quickfix_list'),</span></span><br><span class="line"><span class="code">            \ 'ctrl-t': 'tab split',</span></span><br><span class="line"><span class="code">            \ 'ctrl-x': 'split',</span></span><br><span class="line"><span class="code">            \ 'ctrl-v': 'vsplit' }</span></span><br><span class="line">"Default fzf layout</span><br><span class="line">let g:fzf_layout = { 'down': '~40%'  }</span><br><span class="line">let g:fzf_colors =</span><br><span class="line"><span class="code">            \ { 'fg':      ['fg', 'Normal'],</span></span><br><span class="line"><span class="code">            \ 'bg':      ['bg', 'Normal'],</span></span><br><span class="line"><span class="code">            \ 'hl':      ['fg', 'Comment'],</span></span><br><span class="line"><span class="code">            \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],</span></span><br><span class="line"><span class="code">            \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],</span></span><br><span class="line"><span class="code">            \ 'hl+':     ['fg', 'Statement'],</span></span><br><span class="line"><span class="code">            \ 'info':    ['fg', 'PreProc'],</span></span><br><span class="line"><span class="code">            \ 'border':  ['fg', 'Ignore'],</span></span><br><span class="line"><span class="code">            \ 'prompt':  ['fg', 'Conditional'],</span></span><br><span class="line"><span class="code">            \ 'pointer': ['fg', 'Exception'],</span></span><br><span class="line"><span class="code">            \ 'marker':  ['fg', 'Keyword'],</span></span><br><span class="line"><span class="code">            \ 'spinner': ['fg', 'Label'],</span></span><br><span class="line"><span class="code">            \ 'header':  ['fg', 'Comment'] }</span></span><br><span class="line">"代码折叠</span><br><span class="line">set foldmethod=indent</span><br><span class="line">let g:SimpylFold<span class="emphasis">_docstring_</span>preview=1</span><br><span class="line"></span><br><span class="line">"Ack和rg</span><br><span class="line">let g:ackprg = 'rg '</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">C-s</span>&gt;</span></span> :Ack<span class="xml"><span class="tag">&lt;<span class="name">space</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">"彩虹括号增强</span><br><span class="line">let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle</span><br><span class="line"></span><br><span class="line">" tabular</span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>l :Tab /\|<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line">nnoremap <span class="xml"><span class="tag">&lt;<span class="name">leader</span>&gt;</span></span>= :Tab /=<span class="xml"><span class="tag">&lt;<span class="name">cr</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">" 复制增强</span><br><span class="line">let g:highlightedyank<span class="emphasis">_highlight_</span>duration = 1000</span><br><span class="line">let g:highlightedyank<span class="emphasis">_highlight_</span>duration = -1</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<p>由于安装了 fzf 文件模糊搜索插件和 rg 文本搜索插件，因此我们需要下载 fzf 和 rg 的可执行文件到 <code>D:\bin</code> 目录下。<br><i class="fa fa-download"></i> <a href="https://github.com/junegunn/fzf-bin/releases" target="_blank" rel="noopener">fzf 官方下载</a>  <i class="fa fa-download"></i> <pangu> </pangu><a href="https://github.com/BurntSushi/ripgrep/releases" target="_blank" rel="noopener">rg 官方下载</a> <i class="fa fa-download"></i> <pangu> </pangu><a href="https://www.lanzous.com/i47ouvg" target="_blank" rel="noopener">ctags 高速下载</a></p>
+<p>此时 <code>D:\bin</code> 目录下应该是这样的：</p>
+<div class="highlight-wrap"><figure class="highlight taggerscript"><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="symbol">\b</span>in<span class="symbol">\r</span>g.exe</span><br><span class="line">D:<span class="symbol">\b</span>in<span class="symbol">\f</span>zf.exe</span><br><span class="line">D:<span class="symbol">\b</span>in<span class="symbol">\c</span>tags.exe</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<p>此时进入 vim 按下 <code>tab</code> 键则使用 <code>fzf</code> 模糊搜索。<code>Ctrl+s</code> 进行文本搜索。</p>
+<p>配图如下：</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-22-50.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-22-50.png"></a></p>
+<h3 id="修改字体"><a href="https://www.zhyong.cn/posts/876e/#%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93" class="headerlink" title="修改字体"></a>修改字体</h3><p>从上图可以看出，字体看起来非常费力，因此我们可以安装好看的 <code>SourceCodeProForPowerline</code> 字体。</p>
+<p><i class="fa fa-download"></i> 下载地址：<a href="https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf" target="_blank" rel="noopener">fonts/Source Code Pro for Powerline.otf at master · powerline/fonts</a></p>
+<p>下载后安装即可。</p>
+<p>设置 vim 的字体为 <code>SourceCodeProForPowerline</code></p>
+<p>打开 gvim，普通模式输入命令：<code>:set guifont=*</code> 调出字体窗口，选择即可，并且可设置合适的字体大小。</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-34-43.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-34-43.png"></a></p>
+<p>然后通过<code>:set guifont</code> 命令查看字体设置，但这仅仅是暂时的，重新打开 Gvim 字体设置会失效，我们可以在<code>_vimrc</code> 末尾添加。</p>
+<div class="highlight-wrap"><figure class="highlight md"><figcaption><span>_vimrc</span></figcaption><div class="table-container"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"设置字体 fonts</span><br><span class="line">set guifont=Source<span class="emphasis">_Code_</span>Pro<span class="emphasis">_for_</span>Powerline:h12:cANSI</span><br></pre></td></tr></tbody></table></div></figure><div class="copy-btn">复制</div></div>
+
+<p>此时配置的 Gvim 非常强大且美观了。</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-43-47.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_00-43-47.png"></a></p>
+<h2 id="配置使用说明"><a href="https://www.zhyong.cn/posts/876e/#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" class="headerlink" title="配置使用说明"></a>配置使用说明</h2><p>上述全部配置文件：<a href="https://github.com/stiverick610/vimrc/blob/master/_vimrc%E6%9C%80%E6%96%B0" target="_blank" rel="noopener">vimrc/_vimrc 最新 at master</a></p>
+<p>通过这些配置，我们就可以使用豪华版 gvim 了。</p>
+<p><a class="fancybox fancybox.image" href="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_01-23-51.png" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default"><img alt="" data-src="https://zhyong-cn-file.oss-cn-shanghai.aliyuncs.com/201906/2019-05-19_01-23-51.png"></a></p>
+<p>对于新手，可以打开<code>:help</code> 进行学习 vim 的基本操作，相信会有很大的收获。</p>
+<p>此配置也是经过一定的学习积累而成的，可以查看插件的 Github 以及<code>_vimrc</code> 文件使用它，相信它会极大地提高我们的效率。由于内容太多太杂，另起一篇博客进行讲解，敬请期待。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>ZhangYong
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.zhyong.cn/posts/876e/" title="Gvim的安装及配置">https://www.zhyong.cn/posts/876e/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong> 版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="https://www.zhyong.cn/tags/vim/" rel="tag"><i class="fa fa-tag"></i> vim</a>
+              <a href="https://www.zhyong.cn/tags/vim%E6%8F%92%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> vim 插件</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="https://www.zhyong.cn/posts/bb2e/" rel="next" title="Office下载安装汇总（20190508更新）">
+                  <i class="fa fa-chevron-left"></i> Office 下载安装汇总（20190508 更新）
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="https://www.zhyong.cn/posts/bb8d/" rel="prev" title="分别使用U+、B+、UD制作WinPE启动盘">
+                  分别使用 U+、B+、UD 制作 WinPE 启动盘 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments v" id="comments" style="opacity: 1; display: block;"><div class="vwrap"><div class="vheader item3"><input name="nick" placeholder="昵称" class="vnick vinput" type="text"><input name="mail" placeholder="邮箱" class="vmail vinput" type="email"><input name="link" placeholder="网址(http://)" class="vlink vinput" type="text"></div><div class="vedit"><textarea id="veditor" class="veditor vinput" placeholder="有想说的欢迎留言，留下你的邮箱，有回复就会提醒你~(邮箱不会被公开)"></textarea><div class="vctrl"><span class="vemoji-btn">表情</span> | <span class="vpreview-btn">预览</span></div><div class="vemojis" style="display:none;"><i name="grinning" title="grinning">😀</i><i name="smiley" title="smiley">😃</i><i name="smile" title="smile">😄</i><i name="grin" title="grin">😁</i><i name="laughing" title="laughing">😆</i><i name="sweat_smile" title="sweat_smile">😅</i><i name="joy" title="joy">😂</i><i name="blush" title="blush">😊</i><i name="innocent" title="innocent">😇</i><i name="wink" title="wink">😉</i><i name="relieved" title="relieved">😌</i><i name="heart_eyes" title="heart_eyes">😍</i><i name="kissing_heart" title="kissing_heart">😘</i><i name="kissing" title="kissing">😗</i><i name="kissing_smiling_eyes" title="kissing_smiling_eyes">😙</i><i name="kissing_closed_eyes" title="kissing_closed_eyes">😚</i><i name="yum" title="yum">😋</i><i name="stuck_out_tongue_winking_eye" title="stuck_out_tongue_winking_eye">😜</i><i name="stuck_out_tongue_closed_eyes" title="stuck_out_tongue_closed_eyes">😝</i><i name="stuck_out_tongue" title="stuck_out_tongue">😛</i><i name="sunglasses" title="sunglasses">😎</i><i name="smirk" title="smirk">😏</i><i name="unamused" title="unamused">😒</i><i name="disappointed" title="disappointed">😞</i><i name="pensive" title="pensive">😔</i><i name="worried" title="worried">😟</i><i name="confused" title="confused">😕</i><i name="persevere" title="persevere">😣</i><i name="confounded" title="confounded">😖</i><i name="tired_face" title="tired_face">😫</i><i name="weary" title="weary">😩</i><i name="angry" title="angry">😠</i><i name="rage" title="rage">😡</i><i name="no_mouth" title="no_mouth">😶</i><i name="neutral_face" title="neutral_face">😐</i><i name="expressionless" title="expressionless">😑</i><i name="hushed" title="hushed">😯</i><i name="frowning" title="frowning">😦</i><i name="anguished" title="anguished">😧</i><i name="open_mouth" title="open_mouth">😮</i><i name="astonished" title="astonished">😲</i><i name="dizzy_face" title="dizzy_face">😵</i><i name="flushed" title="flushed">😳</i><i name="scream" title="scream">😱</i><i name="fearful" title="fearful">😨</i><i name="cold_sweat" title="cold_sweat">😰</i><i name="cry" title="cry">😢</i><i name="disappointed_relieved" title="disappointed_relieved">😥</i><i name="sob" title="sob">😭</i><i name="sweat" title="sweat">😓</i><i name="sleepy" title="sleepy">😪</i><i name="sleeping" title="sleeping">😴</i><i name="mask" title="mask">😷</i><i name="smiling_imp" title="smiling_imp">😈</i><i name="smiley_cat" title="smiley_cat">😺</i><i name="smile_cat" title="smile_cat">😸</i><i name="joy_cat" title="joy_cat">😹</i><i name="heart_eyes_cat" title="heart_eyes_cat">😻</i><i name="smirk_cat" title="smirk_cat">😼</i><i name="kissing_cat" title="kissing_cat">😽</i><i name="scream_cat" title="scream_cat">🙀</i><i name="crying_cat_face" title="crying_cat_face">😿</i><i name="pouting_cat" title="pouting_cat">😾</i><i name="cat" title="cat">🐱</i><i name="mouse" title="mouse">🐭</i><i name="cow" title="cow">🐮</i><i name="monkey_face" title="monkey_face">🐵</i><i name="hand" title="hand">✋</i><i name="fist" title="fist">✊</i><i name="v" title="v">✌️</i><i name="point_up" title="point_up">👆</i><i name="point_down" title="point_down">👇</i><i name="point_left" title="point_left">👈</i><i name="point_right" title="point_right">👉</i><i name="facepunch" title="facepunch">👊</i><i name="wave" title="wave">👋</i><i name="clap" title="clap">👏</i><i name="open_hands" title="open_hands">👐</i><i name="+1" title="+1">👍</i><i name="-1" title="-1">👎</i><i name="ok_hand" title="ok_hand">👌</i><i name="pray" title="pray">🙏</i><i name="ear" title="ear">👂</i><i name="eyes" title="eyes">👀</i><i name="nose" title="nose">👃</i><i name="lips" title="lips">👄</i><i name="tongue" title="tongue">👅</i><i name="heart" title="heart">❤️</i><i name="cupid" title="cupid">💘</i><i name="sparkling_heart" title="sparkling_heart">💖</i><i name="star" title="star">⭐️</i><i name="sparkles" title="sparkles">✨</i><i name="zap" title="zap">⚡️</i><i name="sunny" title="sunny">☀️</i><i name="cloud" title="cloud">☁️</i><i name="snowflake" title="snowflake">❄️</i><i name="umbrella" title="umbrella">☔️</i><i name="coffee" title="coffee">☕️</i><i name="airplane" title="airplane">✈️</i><i name="anchor" title="anchor">⚓️</i><i name="watch" title="watch">⌚️</i><i name="phone" title="phone">☎️</i><i name="hourglass" title="hourglass">⌛️</i><i name="email" title="email">✉️</i><i name="scissors" title="scissors">✂️</i><i name="black_nib" title="black_nib">✒️</i><i name="pencil2" title="pencil2">✏️</i><i name="x" title="x">❌</i><i name="recycle" title="recycle">♻️</i><i name="white_check_mark" title="white_check_mark">✅</i><i name="negative_squared_cross_mark" title="negative_squared_cross_mark">❎</i><i name="m" title="m">Ⓜ️</i><i name="i" title="i">ℹ️</i><i name="tm" title="tm">™️</i><i name="copyright" title="copyright">©️</i><i name="registered" title="registered">®️</i></div><div class="vinput vpreview" style="display:none;"></div></div><div class="vcontrol"><div class="col col-20" title="Markdown is supported"><a href="https://segmentfault.com/markdown" target="_blank"><svg class="markdown" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M14.85 3H1.15C.52 3 0 3.52 0 4.15v7.69C0 12.48.52 13 1.15 13h13.69c.64 0 1.15-.52 1.15-1.15v-7.7C16 3.52 15.48 3 14.85 3zM9 11H7V8L5.5 9.92 4 8v3H2V5h2l1.5 2L7 5h2v6zm2.99.5L9.5 8H11V5h2v3h1.5l-2.51 3.5z"></path></svg></a></div><div class="col col-80 text-right"><button type="button" title="Cmd|Ctrl+Enter" class="vsubmit vbtn">回复</button></div></div><div style="display:none;" class="vmark"></div></div><div class="vinfo" style="display:block;"><div class="vcount col"><span class="vnum">1</span> 评论</div></div><div class="vlist"><div class="vcard" id="5ccac90c17b54d0068b1a0a7"><img class="vimg" src="./Gvim 的安装及配置 _ YouForever_files/6e1ed55fb027c40fd9d180bd31e2e37f">
+            <div class="vh" rootid="5ccac90c17b54d0068b1a0a7">
+                <div class="vhead"><span class="vnick">stive</span> <span class="vsys">Chrome 72.0.3626.121</span> <span class="vsys">Windows 10.0</span></div>
+                <div class="vmeta">
+                    <span class="vtime">2019-05-02</span>
+                    <span class="vat">回复</span>
+                </div>
+                <div class="vcontent">
+                    <p>之前就写了这样一篇文章的名字，以后再写！</p>
+
+                </div>
+            </div></div></div><div class="vempty" style="display:none;"></div><div class="vpage txt-center"></div><div class="info"><div class="power txt-right">Powered By <a href="https://valine.js.org/" target="_blank">Valine</a><br>v1.3.10</div></div></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar" style="margin-top: 399px;">
+    <div class="sidebar-inner affix-top" style="opacity: 1; transform: initial;">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel sidebar-panel-active" style="max-height: 785px; opacity: 1;">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2 active active-current"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#Gvim%E7%9A%84%E4%B8%8B%E8%BD%BD%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Gvim 的下载、安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text"> 基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E9%9A%90%E8%97%8Fgvim%E8%8F%9C%E5%8D%95"><span class="nav-number">2.1.</span> <span class="nav-text"> 隐藏 gvim 菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text"> 通用设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E4%BB%A3%E7%A0%81%E7%BC%A9%E8%BF%9B%E4%B8%8E%E6%8E%92%E7%89%88"><span class="nav-number">2.3.</span> <span class="nav-text"> 代码缩进与排版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E4%BB%A3%E7%A0%81%E7%9B%B8%E5%85%B3"><span class="nav-number">2.4.</span> <span class="nav-text"> 代码相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E7%BC%93%E5%AD%98%E5%8F%8A%E7%BC%96%E7%A0%81"><span class="nav-number">2.5.</span> <span class="nav-text"> 缓存及编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E6%A0%B9%E6%8D%AE%E4%B8%AA%E4%BA%BA%E4%B9%A0%E6%83%AF%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.6.</span> <span class="nav-text"> 根据个人习惯设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-number">2.7.</span> <span class="nav-text"> 最终效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text"> 插件安装及配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E5%AE%89%E8%A3%85-vimplug-%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">3.1.</span> <span class="nav-text"> 安装 vimplug 插件管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.2.</span> <span class="nav-text"> 插件配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93"><span class="nav-number">3.3.</span> <span class="nav-text"> 修改字体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="https://www.zhyong.cn/posts/876e/#%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-number">4.</span> <span class="nav-text"> 配置使用说明</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel" style="opacity: 0; max-height: 785px;">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="ZhangYong" src="https://pic.zhyong.cn/images/2019/08/10/2018-04-27_1743.jpg">
+  <p class="site-author-name" itemprop="name">ZhangYong</p>
+  <div class="site-description" itemprop="description">记录，点滴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="https://www.zhyong.cn/archives/">
+        
+          <span class="site-state-item-count">151</span>
+          <span class="site-state-item-name"> 日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="https://www.zhyong.cn/categories/">
+          
+        <span class="site-state-item-count"> 30</span>
+        <span class="site-state-item-name"> 分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="https://www.zhyong.cn/tags/">
+          
+        <span class="site-state-item-count"> 91</span>
+        <span class="site-state-item-name"> 标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhyong68" title="GitHub &amp;rarr; https://github.com/zhyong68" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhyong.cn/mailto:zhangyong@zhyong.cn" title="E-Mail &amp;rarr; mailto:zhangyong@zhyong.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/zhyong2" title="Twitter &amp;rarr; https://twitter.com/zhyong2" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/stiverick68/" title="Instagram &amp;rarr; https://www.instagram.com/stiverick68/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/was172" title="CSDN &amp;rarr; https://blog.csdn.net/was172" rel="noopener" target="_blank"><i class="fa fa-fw fa-cut"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.longyating.com/" title="https://www.longyating.com/" rel="noopener" target="_blank">龙娅婷</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://michael728.github.io/" title="https://michael728.github.io/" rel="noopener" target="_blank">Michael 翔</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  © 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZhangYong</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async="" src="./Gvim 的安装及配置 _ YouForever_files/busuanzi.pure.mini.js.下载"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv">76796</span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: inline;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv">132926</span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="./Gvim 的安装及配置 _ YouForever_files/anime.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/jquery.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/jquery.fancybox.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/medium-zoom.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/lozad.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/pangu.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/velocity.min.js.下载"></script>
+  <script src="./Gvim 的安装及配置 _ YouForever_files/velocity.ui.min.js.下载"></script>
+<script src="./Gvim 的安装及配置 _ YouForever_files/utils.js.下载"></script><script src="./Gvim 的安装及配置 _ YouForever_files/motion.js.下载"></script>
+<script src="./Gvim 的安装及配置 _ YouForever_files/pisces.js.下载"></script>
+<script src="./Gvim 的安装及配置 _ YouForever_files/next-boot.js.下载"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+  <script src="./Gvim 的安装及配置 _ YouForever_files/local-search.js.下载"></script>
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('div.pdf').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js', () => {
+    document.querySelectorAll('div.pdf').forEach(element => {
+      PDFObject.embed(element.getAttribute('target'), element, {
+        pdfOpenParams: {
+          navpanes: 0,
+          toolbar: 0,
+          statusbar: 0,
+          pagemode: 'thumbs',
+          view: 'FitH'
+        },
+        PDFJS_URL: '/lib/pdf/web/viewer.html',
+        height: element.getAttribute('height') || '500px'
+      });
+    });
+  }, window.PDFObject);
+}
+</script>
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: '6sNc720FVRN3TqoaQlzwQSje-gzGzoHsz',
+    appKey: '5GUqTpq4V9vt0mUyQWohYWa0',
+    placeholder: "有想说的欢迎留言，留下你的邮箱，有回复就会提醒你~(邮箱不会被公开)",
+    avatar: 'monsterid',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+
+
+</body></html>
